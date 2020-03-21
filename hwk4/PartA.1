@@ -1,0 +1,27 @@
+// Boyuan Li
+// DS4300
+
+Part A. Scala Warm-up
+
+val nulls = Array[Int](0, 0, 0, 0)
+for (line <- Source.fromFile(filename).getLines) {
+ val toks = line.split(",", -1)
+ for (i <- 0 until toks.length)
+ if (toks(i) == "") nulls(i) = nulls(i) + 1
+}
+println(nulls.mkString(","))
+
+# Functional style
+val nulls = Source.fromFile(filename).getLines
+ .map(_.split(",", -1)).map(a => a.map(z => if (z == "") 1 else 0))
+ .reduce((x, y) => (x zip y).map { case (u, v) => u + v })
+println(nulls.mkString(","))
+
+Using the first method, we decide to loop through every line of the file and then loop through every element by splitting
+each line. If there is a null value, then it is recorded into the count (nulls). The final value of nulls is the number
+of null values in each column.
+
+As for the second way, we use map and reduce, a way more advanced method to count the number of null values, which is a
+higher-level functional abstractions. So map applies a function to the data it has, and return the transformed data.
+Then reduce method applies a function against an accumulator and each element in the array to reduce it to a single value.
+We map te if statement to the data and then reduce it to this intermediary binary list, an then use zip we flatten.
