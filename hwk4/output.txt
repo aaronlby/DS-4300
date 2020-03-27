@@ -1,0 +1,9 @@
+Weight in Binary:
+toBinary(37,8) - 00100101
+toBinary(1234567890,32) - 01001001 10010110 00000010 11010010
+weight("00100101") - 3
+weight("87654321) - 0
+
+moved(1000000,100,107) - 0.0094
+
+For the shortest path problem, my code gives me XJRY
